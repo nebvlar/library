@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Library</title>
+        <link rel="stylesheet" href="style.css">
+    </head>
+<body>
+    <button class="openButton" onclick="openForm()">New Book</button>
+    <div class="formPopup" id="myForm">
+        <form class="formContainer" id="bookForm" name="bookForm">
+        <h1>Add Book</h1>
+        <label for="title">Title</label>
+        <input type="text" placeholder="Title" name="title" class="title"required>
+        <label for="author">Author</label>
+         <input type="text" placeholder="Author" name="author" class="author">
+         <label for="pages">Pages</label>
+         <input type="number" min="0" placeholder="Pages" name="pages" class="pages">
+         <label for="read">Read?</label>
+         <input type="checkbox" name="status" class="status">
+         <button type="submit" class="btn" id="submitButton" onclick="saveBook(event);">Submit</button>
+         <button type="submit" class="btn cancel" onclick="closeForm()">Cancel</button>
+    </form>
+    </div>
+    <div id="wrapper">
+        <p id="bookDisplay"></p>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
