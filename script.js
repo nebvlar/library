@@ -34,18 +34,33 @@ function addBookToLibrary(){
     for(let i = 0; i < myLibrary.length; i++){
         wrapper = document.getElementById('wrapper');
         bookContainer = document.createElement('div');
+        bookContainer.classList.add('bookContainer');
+
         bookTitle = document.createElement('h3');
+        bookTitle.classList.add('title')
         bookTitle.innerHTML = title;
         bookContainer.appendChild(bookTitle);
+
         bookAuthor = document.createElement('h4');
+        bookAuthor.classList.add('author');
         bookAuthor.innerHTML = author;
         bookContainer.appendChild(bookAuthor);
+
         bookPages = document.createElement('h4');
+        bookPages.classList.add('pages');
         bookPages.innerHTML = pages;
         bookContainer.appendChild(bookPages);
+
         bookStatus = document.createElement('button');
-        bookStatus.innerHTML = status;
+        bookStatus.classList.add('status');
         bookContainer.appendChild(bookStatus)
+        if (bookForm.elements["status"].checked === true){
+            bookStatus.textContent = "Read"
+        } else if(bookForm.elements["status"].checked === false){
+            bookStatus.textContent = "Unread"
+        }
+
+
         wrapper.appendChild(bookContainer);
     }
 }
