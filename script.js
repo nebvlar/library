@@ -9,6 +9,18 @@ class Book{
     }
 }
 
+function saveBook(event){
+    event.preventDefault()
+    bookForm = document.forms['bookForm'];
+    title = bookForm.elements['title'].value;
+    author = bookForm.elements['author'].value;
+    pages = bookForm.elements['pages'].value;
+    status = bookForm.elements['status'].checked;
+    const book = new Book(title, author, pages, status);
+    myLibrary.push(book);
+    showBooks()
+}
+
 function openForm(){
     document.querySelector("#myForm").style.display = "block";
     document.querySelector(".openButton").style.display = "none";
@@ -19,53 +31,53 @@ function closeForm(){
     document.querySelector(".openButton").style.display = "block";
 }
 
-function saveBook(event){
-    bookForm = document.forms["bookForm"]
-    title = bookForm.elements["title"].value;
-    author = bookForm.elements["author"].value
-    pages = bookForm.elements["pages"].value;
-    status = bookForm.elements["status"].checked
-    newBook = new Book(title, author, pages, status);
-    myLibrary.push(newBook)
-    event.preventDefault();
-}
-
-function addBookToLibrary(){
-    for(let i = 0; i < myLibrary.length; i++){
-        wrapper = document.getElementById('wrapper');
+function showBooks(){
+    for(let i = 0; i < myLibrary.length; i+= 1){
+        const bookShelf = document.querySelector('#wrapper');
         bookContainer = document.createElement('div');
-        bookContainer.classList.add('bookContainer');
+        bookContainer.classList.add('book');
+        bookContainer.id = 'book'
 
         bookTitle = document.createElement('h3');
-        bookTitle.classList.add('title')
-        bookTitle.innerHTML = title;
+        bookTitle.classList.add('title');
+        bookTitle.textContent = title;
+        bookTitle.id = 'title'
         bookContainer.appendChild(bookTitle);
 
         bookAuthor = document.createElement('h4');
         bookAuthor.classList.add('author');
-        bookAuthor.innerHTML = author;
+        bookAuthor.textContent = author;
+        bookAuthor.id = 'author'
         bookContainer.appendChild(bookAuthor);
 
         bookPages = document.createElement('h4');
         bookPages.classList.add('pages');
-        bookPages.innerHTML = pages;
+        bookPages.textContent = pages;
+        bookPages.id = 'pages'
         bookContainer.appendChild(bookPages);
 
         bookStatus = document.createElement('button');
         bookStatus.classList.add('status');
-        bookContainer.appendChild(bookStatus)
-        if (bookForm.elements["status"].checked === true){
-            bookStatus.textContent = "Read"
-        } else if(bookForm.elements["status"].checked === false){
-            bookStatus.textContent = "Unread"
-        }
+        bookStatus.id = 'status'
+        bookContainer.appendChild(bookStatus);
+        if(bookForm.elements['status'].checked === true){
+            bookStatus.textContent = 'Read';
+        } else if(bookForm.elements['status'].checked === false){
+            bookStatus.textContent = 'Unread';
+        };
 
+        removeButton = document.createElement('button');
+        removeButton.textContent = 'Remove';
+        removeButton.id = 'remove'
+        removeButton.classList.add('removeButton');
+        removeButton.addEventListener('click', removeBook())
+        bookContainer.appendChild(removeButton);
 
-        wrapper.appendChild(bookContainer);
+        bookShelf.appendChild(bookContainer);
     }
 }
-
-function render(){
-    saveBook(event);
-    addBookToLibrary();
+function removeBook(){
+    myLibrary.splice(target.dataset.ID, 1);
 }
+
+
