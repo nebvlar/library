@@ -20,7 +20,7 @@ function openForm(){
 //closes the new book form and shows the new book button once the cancel button is clicked
 function closeForm(){
     document.querySelector('#myForm').style.display = 'none';
-    document.querySelector('.openButton').style.display = 'block';
+    document.querySelector('.openButton').style.display = 'inline-block';
 }
 
 //creates new book from user input and pushes it to the array
@@ -58,6 +58,7 @@ function createBook(book){
     //BOOK CONTAINER
     const bookContainer = document.createElement('div');
     bookContainer.classList.add('book');
+    bookContainer.classList.add('bookContainer');
     bookContainer.setAttribute('id', myLibrary.indexOf(book));
     //BOOK TITLE
     const bookTitle = document.createElement('div');
@@ -74,21 +75,26 @@ function createBook(book){
     bookPages.classList.add('pages');
     bookPages.textContent = book.pages + ' pages';
     bookContainer.appendChild(bookPages);
-    //BOOK STATUS
-    const bookStatus = document.createElement('input');
-    bookStatus.setAttribute('type', 'checkbox');
-    bookStatus.classList.add('status');
-    bookContainer.appendChild(bookStatus);
-    //STATUS LABEL
+    //BOOK LABEL
     const statusLabel = document.createElement('label');
     statusLabel.classList.add('statusLabel');
-    statusLabel.textContent = "Read?"
-    bookStatus.appendChild(statusLabel);
+    statusLabel.classList.add('switch');
+    bookContainer.appendChild(statusLabel);
+    //BOOK STATUS
+    const bookRead = document.createElement('input');
+    bookRead.setAttribute('type', 'checkbox');
+    bookRead.classList.add('status');
+    statusLabel.appendChild(bookRead);
+    //BOOK SPAN
+    let bookSpan = document.createElement('span');
+    bookSpan.classList.add('bookSpan');
+    bookSpan.classList.add('slider');
+    statusLabel.appendChild(bookSpan)
     //BOOK STATUS DISPLAY
     if (book.read === bookForm.elements['read'].checked === true){
-        bookStatus.checked = true;
+        bookRead.checked = true;
     } else if (book.read === bookForm.elements['read'].checked === false){
-        bookStatus.checked === false
+        bookRead.checked === false
     }; 
     //REMOVE BUTTON
     const removeButton = document.createElement('button');
@@ -107,8 +113,8 @@ function createBook(book){
     });
 
     //read status toggle 
-    bookStatus.addEventListener('click', () => {
-        book.status = !book.status;
+    bookRead.addEventListener('click', () => {
+        book.read = !book.read;
         setLocal();
         update();
     });
@@ -131,6 +137,15 @@ function restoreLocal(){
         update();
     }
 };
+
+var modal = document.getElementById('id01');
+
+//Closes menu when clicked outside
+window.onclick = function(event){
+    if (event.target == modal){
+        modal.style.display = "none";
+    }
+}
 
 restoreLocal();
 
