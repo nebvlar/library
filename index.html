@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <title>Library</title>
         <link rel="stylesheet" href="style.css">
+        <script src="https://kit.fontawesome.com/b16beb135a.js" crossorigin="anonymous"></script>
     </head>
 <body>
     <button class="openButton" onclick="openForm()">New Book</button>
@@ -17,12 +18,12 @@
          <label for="pages">Pages</label>
          <input type="number" min="0" placeholder="Pages" name="pages" class="pages">
          <label for="read">Read?</label>
-         <input type="checkbox" name="status" class="status">
+         <input type="checkbox" name="read" class="read">
          <button type="submit" class="btn" id="submitButton" onclick="saveBook(event); return false;">Submit</button>
          <button type="submit" class="btn cancel" onclick="closeForm()">Cancel</button>
     </form>
     </div>
-    <div id="wrapper">
+    <div id="bookShelf">
         <p id="bookDisplay"></p>
     </div>
     <script src="script.js"></script>
