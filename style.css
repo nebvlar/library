@@ -1,3 +1,363 @@
-.formPopup{
-    display:none;
+body{
+    background-color: #302940;
+    font-family: 'Roboto', sans-serif;
+    color: #F2E6D8;
 }
+header{
+    background-color: #65858C;
+    padding: .5rem;
+    text-align: center;
+    font-size: 15px;
+    top: 0px;
+    margin-top: -10px;
+    margin-left: -8px;
+    margin-right: -8px;
+    border-bottom: 2px solid #86A697;
+}
+.htext{
+    margin-bottom: 10px;
+}
+
+.buttonContainer{
+    display: flex;
+    align-items: center;
+}
+.openButton{
+    background-color: #F2E6D8;
+    border: none;
+    color: #516073;
+    border-radius: 10px;
+    padding: 15px;
+
+}
+.openButton span{
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.openButton span:after{
+content: '\00bb';
+position: absolute;
+opacity: 0;
+top: 0;
+right: -20px;
+transition: 0.5s;
+}
+
+.openButton:hover span{
+    padding-right: 25px;
+}
+
+.openButton:hover span:after{
+    opacity: 1;
+    right: 0;
+}
+
+.modal{
+    display: none;
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%;
+    overflow: auto;  
+    background-color: rgba(0,0,0,0.4); 
+    padding-top: 60px;
+  }
+
+.modal-content {
+  background-color: #516073;
+  margin: 5px auto;
+  border: none;
+  width: 80%; 
+}
+
+.close {
+  position: absolute;
+  right: 25px;
+  top: 0;
+  color: #F2E6D8;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #86A697;
+  cursor: pointer;
+}
+
+.animate {
+  -webkit-animation: animatezoom 0.6s;
+  animation: animatezoom 0.6s
+}
+
+@-webkit-keyframes animatezoom {
+  from {-webkit-transform: scale(0)}
+  to {-webkit-transform: scale(1)}
+}
+
+@keyframes animatezoom {
+  from {transform: scale(0)}
+  to {transform: scale(1)}
+}
+
+.titleBox{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #302940;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #F2E6D8;
+}
+
+.authorBox{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #302940;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #F2E6D8;
+}
+
+.pagesBox{
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #302940;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background-color: #F2E6D8;
+}
+
+.readLabel{
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    
+}
+.readLabel .readBox{
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    background-color: #F2E6D8;
+}
+
+.checkmark:after{
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.readLabel .readBox:checked ~ .checkmark:after{
+    display: block;
+}
+
+.readLabel .checkmark:after{
+    left: 9px;
+    top: 5px;
+    width: 5px;
+    height: 10px;
+    border: solid #302940;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+.formContainer{
+    padding: 16px;
+    border-radius: 7px;
+}
+.btn{
+    background-color: #86A697;
+    color: #F2E6D8;
+    padding: 13px 20px;
+    margin: 8px 0;
+    border: 1px solid #302940;
+    cursor: pointer;
+    width: 25%;
+    border-radius: 4px;
+    transition: all 0.5s;
+}
+.btn span{
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.btn span:after{
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.btn:hover span{
+    padding-right: 25px;
+}
+
+.btn:hover span:after{
+    opacity: 1;
+    right: 0;
+}
+.buttonContainer{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+#bookShelf{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 20px 20px 20px 20px;
+}
+.bookContainer{
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     height: 175px;
+     width: 200px;
+     margin: 25px;
+     background-color: #F2E6D8;
+    color: #302940;
+    border: 2px inset #86A697;
+}
+
+.title{
+    background-color: #516073;
+    width: 100%;
+    height: 40px;
+    color: #F2E6D8;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+}
+.author{
+    margin-top: 10px;
+}
+.pages{
+    margin-top: 10px;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+    margin-top: 10px;
+  }
+  
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    -moz-transition: .4s;
+    -moz-transition-duration: .4s;
+    -webkit-transition-duration: .4s;
+    transition-duration: .4s;
+    transition: .4s;
+    border-radius: 34px;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 4px;
+    background-color: #86A697;
+    -webkit-transition: .4s;
+    -moz-transition: .4s;
+    -moz-transition-duration: .4s;
+    -webkit-transition-duration: .4s;
+    transition-duration: .4s;
+    transition: .4s;
+    border-radius: 50%;
+  }
+  
+  input:checked + .slider {
+    background-color: #65858C;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #65858C;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    -moz-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+
+  .removeButton{
+    background-color: #65858C;
+    border: none;
+    border-radius: 4px;
+    margin-top: 20px;
+    color: #F2E6D8;
+    width: 25px;
+    height: 15px;
+    -moz-transition-duration: .4s;
+    -webkit-transition-duration: .4s;
+    transition-duration: .4s;
+  }
+  
+  .removeButton:hover{
+    background-color: #516073;
+  }
+
+
+
+
